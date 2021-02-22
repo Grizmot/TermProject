@@ -15,28 +15,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W)){
-            Jump();
+        if (Input.GetKey(KeyCode.W))
+        {
+            bod.AddForce(Vector2.up * speed);
         }
 
-        if (Input.GetKey(KeyCode.A)){
+        if (Input.GetKey(KeyCode.A))
+        {
             bod.AddForce(Vector2.left * speed);
         }
 
-        if (Input.GetKey(KeyCode.S)){
+        if (Input.GetKey(KeyCode.S))
+        {
             //bod.AddForce(Vector2.down);
         }
 
-        if (Input.GetKey(KeyCode.D)){
+        if (Input.GetKey(KeyCode.D))
+        {
             bod.AddForce(Vector2.right * speed);
         }
     }
-
-    private void Jump()
-    {
-        if(bod.velocity.y < 0){
-            bod.AddForce(Vector2.up * speed);
-        } 
-    }
-
 }
