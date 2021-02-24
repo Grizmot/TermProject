@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
 
     public int speed;
+    public int jumpHeight;
     Rigidbody2D bod;
+    private bool isJumping;
 
     private void Awake()
     {
@@ -15,9 +17,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !isJumping)
         {
-            bod.AddForce(Vector2.up * speed);
+            bod.AddForce(Vector2.up * jumpHeight);
+            isJumping = true;
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -33,6 +36,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             bod.AddForce(Vector2.right * speed);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    { 
+        if (collision.gameObject.tag == "Floor" )
+        {
+            isJumping = false;
         }
     }
 }
